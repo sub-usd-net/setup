@@ -1,0 +1,15 @@
+fujiURI: "https://api.avax-test.network"
+
+subnetCreatorKeyPath: "<PATH_TO_KEY>"
+vmName: "sub-usd-net"
+chainName: "sub usd net"
+
+validatorNodeID: "<YOUR_VALIDATOR_NODE_ID>"
+subnetValidatorWeight: 1000
+
+genesisAddress: "<YOUR_GENESIS_ADDRESS>"
+defaultFeeReceiverAddress: "<FEE_CONFIG_ADDRESS>"
+
+chainId: 52125
+genesisAllocationInMicroUSD: 500000000 # $500
+targetTransferCostInMicroUSD: 10000 # $0.01
