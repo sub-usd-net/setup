@@ -48,5 +48,6 @@ func (b *Bootstrapper) Bootstrap() error {
 		return err
 	}
 	log.Println("Now you can build the vm, whitelist the subnet, and restart your node")
+	log.Printf("on node ./recreate/recreate.sh %s %s %s\n", res.Subnet.String(), res.VmID.String(), res.Chain.String())
 	return nil
 }

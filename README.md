@@ -39,12 +39,40 @@ $ cp <YOUR_VM_ID> ../avalanchego/build/plugins/
 {"whitelisted-subnets": <YOUR_SUBNET_ID>}
 ```
 
-- Expose RPC. You can use the sample nginx config in `samples/` (TBD)
+- Expose an RPC endpoint. Here is a sample nginx config:
+
+```conf
+server {
+  listen 80;
+  server_name <YOUR_DOMAIN>;
+
+  location /rpc/ {
+    proxy_pass http://localhost:9650/ext/bc/<YOUR_CHAIN_ID/rpc;
+  }
+  
+  location = /ws/ {
+    proxy_send_timeout 5m;
+    proxy_read_timeout 5m;
+    proxy_http_version 1.1;
+    proxy_set_header Upgrade $http_upgrade;
+    proxy_set_header Connection "upgrade";
+    proxy_pass http://localhost:9650/ext/bc/<YOUR_CHAIN_ID>/ws;
+  }
+}
+```
+
 
 #### Deploy contracts for users
 
-- Deploy gnosis safe factory (TBD)
+- Deploy gnosis safe factory. You can follow the instructions in the [safe repo](https://github.com/sub-usd-net/safe)
 
-- Allow users to create gnosis safe's by whitelisting the factory (TBD)
+- Allow users to create gnosis safe's by whitelisting the factory. Obtain the factory address from the previous step.
 
-- Deploy bridge (TBD)
+```shell
+# allow user's to create their own gnosis safe proxies
+cast send --rpc-url ${RPC_URL} --private-key ${GENESIS_KEY} 0x0200000000000000000000000000000000000000 'setEnabled(address)' "$FACTORY"
+# confirm
+cast call --rpc-url ${RPC_URL} 0x0200000000000000000000000000000000000000 "readAllowList(address)(uint256)" "$FACTORY"
+```
+
+- Deploy C-Chain <--> Subnet bridge (TBD)
