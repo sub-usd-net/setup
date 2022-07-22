@@ -1,7 +1,7 @@
 
 ### Overview
 
-This repo exposes a tool that wraps `subnet-cli` to make the UX surrounding deployment of a prototype stablecoin settlement subnet for Eden
+This repo exposes a tool that wraps `avalanchego/wallet` to make the UX surrounding deployment of a prototype stablecoin settlement subnet for Eden
 Assumes that you have access to a node on the Avalanche Fuji test network that is a validator
 
 1. Creates a subnet
